@@ -9,4 +9,4 @@ result <- santree::convert_to_sankeymatic(santree::convert_phylo_to_sankey(bird.
 cat(result)
 ```
 
-And then paste the result to http://sankeymatic.com/build/.
+And then paste the result to http://sankeymatic.com/build/. You may need to play with figure height and such.
