@@ -1,0 +1,15 @@
+Package: santree
+Title: Creates Sankey Diagrams from Phylogenetic Trees
+Version: 0.0.0.9000
+Authors@R: c(person("Brian", "O'Meara", email = "omeara.brian@gmail.com", role = c("aut", "cre")), person("Jodie", "Wiggins", email = "jodiewiggins18@gmail.com", role = c("aut"))
+Description: Sankey diagrams are a way of showing flow between nodes. This allows this, but for phylogenetic trees (networks to come later). The advantage of this is beautiful flowing lines as well as showing how diversity separates at nodes.
+Depends: R (>= 3.5.1)
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: true
+Requires:
+    ape
+    phangorn
+Suggests:
+    testthat
+RoxygenNote: 6.1.1
