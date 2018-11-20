@@ -83,6 +83,7 @@ convert_to_sankeymatic <- function(sankey) {
 convert_phylo_to_plotly <- function(phy, tip.weights=NULL, erase.labels=FALSE) {
   links.df <- convert_phylo_to_sankey(phy, tip.weights=tip.weights, erase.labels=FALSE, convert.numbers=FALSE)
   links <- list(source=links.df$source, target=links.df$target, value=links.df$value)
-  nodes <- STUFF
+  node.labels <- rep("", ape::Ntip(phy) + ape::Nnode(phy))
+  node.labels[1:ape::Ntip(phy)] <- phy$tip.label
 
 }
