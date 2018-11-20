@@ -84,39 +84,41 @@ convert_phylo_to_plotly <- function(phy, tip.weights=NULL, erase.labels=FALSE) {
   links.df <- convert_phylo_to_sankey(phy, tip.weights=tip.weights, erase.labels=FALSE, convert.numbers=FALSE)
   links <- list(source=links.df$source, target=links.df$target, value=links.df$value)
   node.labels <- rep("", ape::Ntip(phy) + ape::Nnode(phy))
-  tips <- node.labels[1:ape::Ntip(phy)] <- phy$tip.label #node.label produces replacement of zero length
+  node.labels[1:ape::Ntip(phy)] <- phy$tip.label #node.label produces replacement of zero length
+
+  if(!is.null(phy$node.label)) {
+    node.labels[(ape::Ntip(phy)+1) : (ape::Ntip(phy) + ape::Nnode(phy)) ] <- phy$node.label
+  }
+
   #internal <- node.labels[(ape::Ntip(phy)+1) : (ape::Ntip(phy) + ape::Nnode(phy)) ] <- phy$node.label # error: replacement has length zero because no internal nodes have labels, need if else?
   #nodes <- tips + internal
-  tips <- list(tips=tips)
-  result_pl <- c(links,tips) # problem may be here, this is a list of lists but tips is shorter than the links...need all of the nodes but not all are labeled
+  result_pl <- list(links=links,nodes=node.labels) # problem may be here, this is a list of lists but tips is shorter than the links...need all of the nodes but not all are labeled
   return(result_pl)
 
 }
 
-#' @param plotly The data.frame (is a list right now) with links (source, value, and target) and nodes (label and color(?)) produced by convert_phylo_to_plotly
+#' @param phy The tree in ape phylo format
+#' @param color A vector of colors for the nodes
 #' @return A plotly santree
 #' @export
-convert_to_plotly_santree <- function(plotly) {
-  plot_ly(
+convert_to_plotly_santree <- function(phy, color="") {
+  result_pl <- convert_phylo_to_plotly(phy)
+  my.plot <- plot_ly(
     type = "sankey",
     orientation = "h",
-    
+
     node = list(
-      label = result_pl$tips, #maybe the problem is here - there are fewer labels than nodes
-      #color =
+      label = result_pl$nodes, #maybe the problem is here - there are fewer labels than nodes
+      color = color,
       pad = 15,
       thickness = 20,
       line = list(
         color = "black",
         width = 0.5
       )
-      ),
-    
-    link = list(
-      source = result_pl$source,
-      target = result_pl$target, 
-      value = result_pl$value
-      )
-    ) 
-    
+    ),
+
+    link = result_pl$links
+    )
+  return(my.plot)
 }
