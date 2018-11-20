@@ -88,7 +88,7 @@ convert_phylo_to_plotly <- function(phy, tip.weights=NULL, erase.labels=FALSE) {
   #internal <- node.labels[(ape::Ntip(phy)+1) : (ape::Ntip(phy) + ape::Nnode(phy)) ] <- phy$node.label # error: replacement has length zero because no internal nodes have labels, need if else?
   #nodes <- tips + internal
   tips <- list(tips=tips)
-  result_pl <- c(links,tips) # problem may be here, this is a list of lists but tips is shorter than the links...
+  result_pl <- c(links,tips) # problem may be here, this is a list of lists but tips is shorter than the links...need all of the nodes but not all are labeled
   return(result_pl)
 
 }
@@ -102,7 +102,7 @@ convert_to_plotly_santree <- function(plotly) {
     orientation = "h",
     
     node = list(
-      label = result_pl$tips,
+      label = result_pl$tips, #maybe the problem is here - there are fewer labels than nodes
       #color =
       pad = 15,
       thickness = 20,
