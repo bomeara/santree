@@ -10,3 +10,10 @@ cat(result)
 ```
 
 And then paste the result to http://sankeymatic.com/build/. You may need to play with figure height and such.
+
+```
+library(plotly)
+result_pl <- (convert_phylo_to_plotly(bird.orders))
+convert_to_plotly_santree(result_pl)
+
+```
