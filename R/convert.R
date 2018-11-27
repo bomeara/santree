@@ -126,6 +126,7 @@ convert_to_plotly_santree <- function(phy, color="") {
 
 convert_phylo_to_river <- function(phy, tip.weights=NULL, erase.labels=FALSE) {
   plotly <- convert_phylo_to_plotly(phy, tip.weights=tip.weights, erase.labels=FALSE)
+  #if code it this way Nodes needs to be a character vector, use sapply?
   Nodes <- unique(list(phy$edge)) #this wont work because the IDs need to be in the same order as the edge length
   xpos <- phy$edge.length #to correctly place the node need to add the previous edge lengths
   
