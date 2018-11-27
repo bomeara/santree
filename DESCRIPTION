@@ -10,6 +10,7 @@ LazyData: true
 Requires:
     ape
     phangorn
+    riverplot
 Suggests:
     testthat
 RoxygenNote: 6.1.1

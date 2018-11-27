@@ -128,7 +128,7 @@ convert_to_plotly_santree <- function(phy, color="") {
 
 
 #' Convert from a phylo object to an object containing Node, xpos, and edges (ID1, ID2, and Value)
-#' 
+#'
 #' @param phy The tree in ape phylo format
 #' @return A riverplot object
 #' @export
@@ -137,16 +137,16 @@ convert_phylo_to_river <- function(phy, tip.weights=NULL, erase.labels=FALSE) {
   #if code it this way Nodes needs to be a character vector, use sapply?
   Nodes <- unique(list(phy$edge)) #this wont work because the IDs need to be in the same order as the edge length
   xpos <- phy$edge.length #to correctly place the node need to add the previous edge lengths
-  
-  
+
+
   ID1 <- plotly$links$source
   ID2 <- plotly$links$target
   Value <- plotly$links$value
-  Edges <- as.data.frame(ID1=ID1,ID2=ID2,Value=Value)
-  
+  Edges <- data.frame(ID1=ID1,ID2=ID2,Value=Value)
+
   river_phy <- riverplot::makeRiver(nodes = Nodes, edges = Edges, node_xpos = xpos)
-  
+
   return(river_phy)
 
-  
+
 }
