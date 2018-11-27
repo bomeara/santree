@@ -134,10 +134,11 @@ convert_to_plotly_santree <- function(phy, color="") {
 #' @export
 convert_phylo_to_river <- function(phy, tip.weights=NULL, erase.labels=FALSE) {
   plotly <- convert_phylo_to_plotly(phy, tip.weights=tip.weights, erase.labels=FALSE)
-  #if code it this way Nodes needs to be a character vector, use sapply?
-  Nodes <- unique(list(phy$edge)) #this wont work because the IDs need to be in the same order as the edge length
-  xpos <- phy$edge.length #to correctly place the node need to add the previous edge lengths
-
+  Nodes <- 1:(Ntip(phy) + Nnode(phy)) 
+  xpos  <- rep(NA, ape::Ntip(phy) + ape::Nnode(phy))
+  for (node.index in sequence(ape::Ntip(phy) + ape::Nnode(phy))) {
+    nodeheight.vector[node.index] <- phytools::nodeheight(phy, node.index)
+  }
 
   ID1 <- plotly$links$source
   ID2 <- plotly$links$target

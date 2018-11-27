@@ -11,6 +11,7 @@ Requires:
     ape
     phangorn
     riverplot
+    phytools
 Suggests:
     testthat
 RoxygenNote: 6.1.1
