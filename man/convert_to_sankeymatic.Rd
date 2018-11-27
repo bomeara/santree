@@ -2,12 +2,12 @@
 % Please edit documentation in R/convert.R
 \name{convert_to_sankeymatic}
 \alias{convert_to_sankeymatic}
-\title{Convert flux data.frame to input for http://sankeymatic.com}
+\title{Convert value data.frame to input for http://sankeymatic.com}
 \usage{
 convert_to_sankeymatic(sankey)
 }
 \arguments{
-\item{sankey}{The data.frame with innode, flux, and outnode}
+\item{sankey}{The data.frame with source, value, and target}
 }
 \value{
 A string suitable for putting into sankeymatic to get a diagram

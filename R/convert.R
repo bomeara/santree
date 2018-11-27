@@ -97,6 +97,9 @@ convert_phylo_to_plotly <- function(phy, tip.weights=NULL, erase.labels=FALSE) {
 
 }
 
+
+#' Convert plotly object from convert_phylo_to_plotly to a sankey diagram
+#'
 #' @param phy The tree in ape phylo format
 #' @param color A vector of colors for the nodes
 #' @return A plotly santree
@@ -124,6 +127,11 @@ convert_to_plotly_santree <- function(phy, color="") {
 }
 
 
+#' Convert from a phylo object to an object containing Node, xpos, and edges (ID1, ID2, and Value)
+#' 
+#' @param phy The tree in ape phylo format
+#' @return A riverplot object
+#' @export
 convert_phylo_to_river <- function(phy, tip.weights=NULL, erase.labels=FALSE) {
   plotly <- convert_phylo_to_plotly(phy, tip.weights=tip.weights, erase.labels=FALSE)
   #if code it this way Nodes needs to be a character vector, use sapply?
@@ -134,7 +142,7 @@ convert_phylo_to_river <- function(phy, tip.weights=NULL, erase.labels=FALSE) {
   ID1 <- plotly$links$source
   ID2 <- plotly$links$target
   Value <- plotly$links$value
-  Edges <- as.data.frame(ID1,ID2,Value)
+  Edges <- as.data.frame(ID1=ID1,ID2=ID2,Value=Value)
   
   river_phy <- riverplot::makeRiver(nodes = Nodes, edges = Edges, node_xpos = xpos)
   
