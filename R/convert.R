@@ -126,16 +126,18 @@ convert_to_plotly_santree <- function(phy, color="") {
 
 convert_phylo_to_river <- function(phy, tip.weights=NULL, erase.labels=FALSE) {
   plotly <- convert_phylo_to_plotly(phy, tip.weights=tip.weights, erase.labels=FALSE)
-  IDs <- unique(list(phy$edge)) #this wont work because the IDs need to be in the same order as the edge length
-  x <- phy$edge.length
-  nodes <- as.data.frame(IDs,x)
+  Nodes <- unique(list(phy$edge)) #this wont work because the IDs need to be in the same order as the edge length
+  xpos <- phy$edge.length #to correctly place the node need to add the previous edge lengths
+  
   
   ID1 <- plotly$links$source
   ID2 <- plotly$links$target
   Value <- plotly$links$value
-  edges <- as.data.frame(ID1,ID2,Value)
+  Edges <- as.data.frame(ID1,ID2,Value)
   
-  river_tree <- as.data.frame(nodes, edges)
+  river_phy <- riverplot::makeRiver(nodes = Nodes, edges = Edges, node_xpos = xpos)
+  
+  return(river_phy)
 
   
 }
