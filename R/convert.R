@@ -143,7 +143,7 @@ convert_phylo_to_river <- function(phy, tip.weights=NULL, erase.labels=FALSE) {
   ID1 <- plotly$links$source
   ID2 <- plotly$links$target
   Value <- plotly$links$value
-  Edges <- data.frame(ID1=ID1,ID2=ID2,Value=Value)
+  Edges <- data.frame(c(ID1=ID1,ID2=ID2,Value=Value))
 
   river_phy <- riverplot::makeRiver(nodes = Nodes, edges = Edges, node_xpos = xpos)
 
