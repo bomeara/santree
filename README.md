@@ -18,14 +18,15 @@ And then paste the result to http://sankeymatic.com/build/. You may need to play
 library(ape)
 library(plotly)
 data("bird.orders")
-result_pl <- (convert_phylo_to_plotly(bird.orders))
-convert_to_plotly_santree(result_pl)
+result_pl <- (santree::convert_phylo_to_plotly(bird.orders))
+santree::convert_to_plotly_santree(result_pl)
 
 ```
 
 ```
 library(ape)
+library(riverplot)
 data("bird.orders")
-result_rv <- (convert_phylo_to_river(bird.orders))
+result_rv <- (santree::convert_phylo_to_river(bird.orders))
 
 ```
