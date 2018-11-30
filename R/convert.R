@@ -140,8 +140,8 @@ convert_phylo_to_river <- function(phy, tip.weights=NULL, erase.labels=FALSE) {
     xpos[node.index] <- phytools::nodeheight(phy, node.index) 
   }
 
-  ID1 <- plotly$links$source
-  ID2 <- plotly$links$target
+  ID1 <- as.character(plotly$links$source)
+  ID2 <- as.character(plotly$links$target)
   Value <- plotly$links$value
   Edges <- data.frame(N1=ID1,N2=ID2,Value=Value)
 
