@@ -134,18 +134,19 @@ convert_to_plotly_santree <- function(phy, color="") {
 #' @export
 convert_phylo_to_river <- function(phy, tip.weights=NULL, erase.labels=FALSE) {
   plotly <- convert_phylo_to_plotly(phy, tip.weights=tip.weights, erase.labels=FALSE)
-  Nodes <- as.character(1:(Ntip(phy) + Nnode(phy))) 
+  Nodes <- as.character(1:(Ntip(phy) + Nnode(phy)))
   xpos  <- rep(NA, ape::Ntip(phy) + ape::Nnode(phy))
   for (node.index in sequence(ape::Ntip(phy) + ape::Nnode(phy))) {
-    xpos[node.index] <- phytools::nodeheight(phy, node.index) 
+    xpos[node.index] <- phytools::nodeheight(phy, node.index)
   }
 
   ID1 <- as.character(plotly$links$source)
   ID2 <- as.character(plotly$links$target)
   Value <- plotly$links$value
   Edges <- data.frame(N1=ID1,N2=ID2,Value=Value)
-
-  river_phy <- riverplot::makeRiver(nodes = Nodes, edges = Edges, node_xpos = xpos)
+  ape::plot.phylo(phy, plot=FALSE) # plotting to get yy
+  obj<-get("last_plot.phylo",envir=.PlotPhyloEnv) # trick learned from phytools
+  river_phy <- riverplot::makeRiver(nodes = Nodes, edges = Edges, node_xpos = xpos, node_ypos = obj$yy)
 
   return(river_phy)
 

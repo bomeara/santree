@@ -30,3 +30,11 @@ data("bird.orders")
 result_rv <- (santree::convert_phylo_to_river(bird.orders))
 
 ```
+
+```
+library(ape)
+library(riverplot)
+phy <- rcoal(5)
+result_rv <- (santree::convert_phylo_to_river(phy))
+plot(result_rv, nodewidth=0)
+```
