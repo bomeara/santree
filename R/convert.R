@@ -139,6 +139,7 @@ convert_phylo_to_river <- function(phy, tip.weights=NULL, erase.labels=FALSE) {
   for (node.index in sequence(ape::Ntip(phy) + ape::Nnode(phy))) {
     xpos[node.index] <- phytools::nodeheight(phy, node.index)
   }
+  node_labels <- as.character(1:(tip.label(phy) + node.label(phy)))
 
   ID1 <- as.character(plotly$links$source)
   ID2 <- as.character(plotly$links$target)
