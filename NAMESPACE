@@ -3,5 +3,6 @@
 export(convert_phylo_to_plotly)
 export(convert_phylo_to_river)
 export(convert_phylo_to_sankey)
+export(convert_phylo_to_spindle_river)
 export(convert_to_plotly_santree)
 export(convert_to_sankeymatic)
